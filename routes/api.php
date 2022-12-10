@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('/suppliers', App\Http\Controllers\SupplierController::class);
+Route::apiResource('/barangs', App\Http\Controllers\BarangController::class);
