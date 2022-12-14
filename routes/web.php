@@ -18,7 +18,9 @@ Route::get('/', function () {
 });
 
 //Route Resource
-Route::resource('/supplier', 
-\App\Http\Controllers\SupplierController::class);
-Route::resource('/barang', 
-\App\Http\Controllers\BarangController::class);
+// Route::resource('/supplier', 
+// \App\Http\Controllers\SupplierController::class);
+// Route::resource('/barang', 
+// \App\Http\Controllers\BarangController::class);
+// Route::resource('/user', 
+// \App\Http\Controllers\UserController::class);

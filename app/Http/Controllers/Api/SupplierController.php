@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Http\Resources\DepartemenResource;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+
+
 
 class SupplierController extends Controller
 {
@@ -102,7 +105,7 @@ class SupplierController extends Controller
             //update post
                $supplier->nama_supplier = $request->get('nama_supplier');
                $supplier->alamat_supplier = $request->get('alamat_supplier');
-               $supplier->jumlah_pegawai = $request->get('jumlah_pegawai');
+               $supplier->deskripsi = $request->get('deskripsi');
                $supplier->save();
             return new DepartemenResource(true, 'Data Supplier Berhasil Diupdate!', $supplier);
 
