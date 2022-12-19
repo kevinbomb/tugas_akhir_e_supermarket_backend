@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id');
             $table->integer('harga');
             $table->boolean('in_stok');
+            $table->string('img');
             $table->date('expired');
             $table->timestamps();
 

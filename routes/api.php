@@ -29,6 +29,11 @@ Route::post('/suppliers', [SupplierController::class, 'store']);
 Route::get('/suppliers/{id}', [SupplierController::class, 'show']);
 Route::delete('/suppliers/{id}', [SupplierController::class, 'destroy']);
 Route::put('/suppliers/{id}', [SupplierController::class, 'update']);
+// USER
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
+Route::put('/users/{id}', [UserController::class, 'update']);
 });
 
 // Route::apiResource('/suppliers', App\Http\Controllers\SupplierController::class);

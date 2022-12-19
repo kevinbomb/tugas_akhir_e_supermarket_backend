@@ -21,6 +21,7 @@ class Barang extends Model
         'harga',
         'in_stok',
         'expired',
+        'img',
     ]; 
 
     public function barang()
