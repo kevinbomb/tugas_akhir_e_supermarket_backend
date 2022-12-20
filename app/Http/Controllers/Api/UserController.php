@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\Passport;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -100,6 +101,7 @@ class UserController extends Controller
         $registrationData['is_active'] = 0;
         $user = User::create($registrationData); // membuat user baru
         // $user->sendApiEmailVerificationNotification();
+        event(new Registered($user));
         return new DepartemenResource(true, 'Data User Berhasil Ditambahkan!', $user);
     }
     

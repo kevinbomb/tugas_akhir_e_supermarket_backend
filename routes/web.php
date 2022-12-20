@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/verifyEmailSuccess', function () {
+    return view('emailSuccess');
+});
+
 //Route Resource
 // Route::resource('/supplier', 
 // \App\Http\Controllers\SupplierController::class);

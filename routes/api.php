@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BarangController;
+use App\Http\Controllers\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,19 @@ use App\Http\Controllers\Api\BarangController;
 |
 */
 
+// Verify email
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+    ->name('verification.verify');
+
+ 
+
+// Resend link to verify email
+Route::post('/email/verify/resend', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+});
+
+// Route::get('email-verification', 'app\Http\Controllers\AuthController@verify')->name('verification.verify');
 // Route::post('register', 'Api\AuthController@register');
 // Route::post('login', 'Api\AuthController@login');
  //login
