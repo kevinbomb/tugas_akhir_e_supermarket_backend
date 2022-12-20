@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BarangController;
+use App\Http\Controllers\Api\KeranjangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,12 @@ Route::post('/barangs', [BarangController::class, 'store']);
 Route::get('/barangs/{id}', [BarangController::class, 'show']);
 Route::delete('/barangs/{id}', [BarangController::class, 'destroy']);
 Route::put('/barangs/{id}', [BarangController::class, 'update']);
+// KERANJANG
+Route::get('/keranjangs', [KeranjangController::class, 'index']);
+Route::post('/keranjangs', [KeranjangController::class, 'store']);
+Route::get('/keranjangs/{user_id}', [KeranjangController::class, 'indexbuyer']);
+Route::delete('/keranjangs/{id}', [KeranjangController::class, 'destroy']);
+Route::put('/keranjangs/{id}', [KeranjangController::class, 'update']);
 });
 
 // Route::apiResource('/suppliers', App\Http\Controllers\SupplierController::class);

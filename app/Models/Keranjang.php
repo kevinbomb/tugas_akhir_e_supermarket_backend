@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model
+class Keranjang extends Model
 {
     use HasFactory;
 
@@ -15,13 +15,10 @@ class Supplier extends Model
     * @var array
     */
     protected $fillable = [
-        'nama_supplier',
-        'alamat_supplier',
-        'deskripsi',
+        'nama_barang',
+        'jumlah',
+        'harga',
+        'user_id',
+        'status',
     ]; 
-
-    public function supplier()
-    {
-        return $this->hasMany(Barang::class);
-    }
 }
