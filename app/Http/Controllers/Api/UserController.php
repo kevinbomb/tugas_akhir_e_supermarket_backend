@@ -53,7 +53,7 @@ class UserController extends Controller
             return response(['message' => 'Invalid Credentials'],401); 
         
         $user = Auth::user();
-        if ($user->is_active == 0) {
+        if ($user->email_verified_at == NULL) {
             return response([
                 'message' => 'Please Verify Your Email'
             ], 401); //Return error jika belum verifikasi email
@@ -146,7 +146,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:60',
             'username' => 'required',
-            'email'=> 'required|email:rfc,dns|unique:users',
+            'email'=> 'required|email:rfc,dns',
             ]);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 422);
@@ -157,6 +157,7 @@ class UserController extends Controller
         $user->name =  $request->get('name');
         $user->username = $request->get('username');
         $user->email = $request->get('email');
+        $user->img = $request->get('img');
 
         $user->save();
 
