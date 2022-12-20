@@ -7,9 +7,37 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Validator;
+use illuminate\Auth\Events\Verified;
 
 class AuthController extends Controller
 {
+    public function verify(Request $request) {
+        $user = User::findOrFail($request->id);
+
+        if (! hash_equals((string) $request->hash, sha1($user->getEmailForVerification()))) {
+            return response()->json([
+                "message" => "Unauthorized",
+                "success" => false
+            ]);
+        }
+
+        if ($user->hasVerifiedEmail()) {
+            return response()->json([
+                "message" => "User already verified!",
+                "success" => false
+            ]);
+        }
+
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+
+        return response()->json([
+            "message" => "Email verified successfully!",
+            "success" => true
+        ]);
+    }
+
     public function register(Request $request){
 
         $registrationData = $request->all();
@@ -27,7 +55,7 @@ class AuthController extends Controller
         $registrationData['password'] = bcrypt($request->password); // enkripsi password
         $registrationData['is_active'] = 0;
         $user = User::create($registrationData); // membuat user baru
-        $user->sendApiEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
         return response([
             'message' => 'Register Success',
             'user' => $user
