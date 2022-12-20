@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Http\Resources\DepartemenResource;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 
 class BarangController extends Controller
 {
@@ -48,18 +49,20 @@ class BarangController extends Controller
         'supplier_id' => 'required',
         'harga'=> 'required || gte:0',
         'in_stok'=> 'required',
-        'expired' => 'required || date'
+        'expired' => 'required || date',
+        'img' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
         //Fungsi Simpan Data ke dalam Database
         $barang = Barang::create([
-        'name_barang' => $request->nama_barang,
+        'nama_barang' => $request->nama_barang,
         'supplier_id' => $request->supplier_id,
         'harga'=> $request->harga,
         'in_stok'=> $request->in_stok,
-        'expired' => $request->expired
+        'expired' => $request->expired,
+        'img' => $request->img
         ]);
         return new DepartemenResource(true, 'Data Barang Berhasil Ditambahkan!', $barang);
     }
@@ -107,7 +110,7 @@ class BarangController extends Controller
             'supplier_id' => 'required',
             'harga'=> 'required || gte:0',
             'in_stok'=> 'required',
-            'expired' => 'required || date'
+            'expired' => 'required || date',
             ]);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 422);
@@ -120,6 +123,7 @@ class BarangController extends Controller
         $barang->harga = $request->get('harga');
         $barang->in_stok = $request->get('in_stok');
         $barang->expired = $request->get('expired');
+        $barang->img = $request->get('img');
 
         $barang->save();
 

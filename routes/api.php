@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,12 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::put('/users/{id}', [UserController::class, 'update']);
+// BARANG
+Route::get('/barangs', [BarangController::class, 'index']);
+Route::post('/barangs', [BarangController::class, 'store']);
+Route::get('/barangs/{id}', [BarangController::class, 'show']);
+Route::delete('/barangs/{id}', [BarangController::class, 'destroy']);
+Route::put('/barangs/{id}', [BarangController::class, 'update']);
 });
 
 // Route::apiResource('/suppliers', App\Http\Controllers\SupplierController::class);
